@@ -1,6 +1,6 @@
 ## Jira 티켓
 
-[PROJ-00](https://hanium.atlassian.net/browse/PROJ-00)
+[PROJ-00](https://jyjm.atlassian.net/browse/PROJ-00)
 
 ## 제목
 
