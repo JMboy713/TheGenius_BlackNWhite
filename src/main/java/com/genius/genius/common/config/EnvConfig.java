@@ -1,4 +1,4 @@
-package com.genius.genius.config;
+package com.genius.genius.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
