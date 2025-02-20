@@ -8,12 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("My API")
+                        .title("GeniusWhite&Black")
                         .version("1.0")
                         .description("This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3."));
     }
