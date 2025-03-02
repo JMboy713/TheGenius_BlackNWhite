@@ -18,7 +18,6 @@ public enum ExceptionEnum {
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER_NOT_FOUND", "유저를 찾지 못했습니다."),
     ROOM_NOT_FOUND(HttpStatus.NOT_FOUND, "ROOM_NOT_FOUND", " 방을 찾지 못했습니다."),
     ALARM_NOT_FOUND(HttpStatus.NOT_FOUND, "ALARM_NOT_FOUND", " 알람을 찾지 못했습니다."),
-    TOTAL_BALANCE_NOT_FOUND(HttpStatus.NOT_FOUND, "TOTAL_BALANCE_NOT_FOUND", " 자산을 찾지 못했습니다."),
     UNAUTHORIZED(HttpStatus.NOT_FOUND, "UNAUTHORIZED", " 인증이 되지 않았습니다."),
     INVALID_USER_DETAILS(HttpStatus.NOT_FOUND, "INVALID_USER_DETAILS", " 사용자를 찾지 못했습니다."),
     EMAIL_NOT_FOUND(HttpStatus.NOT_FOUND, "EMAIL_NOT_FOUND", " 이메일을 찾지 못했습니다."),
@@ -35,8 +34,9 @@ public enum ExceptionEnum {
 
     // User
     EXIST_USERNAME(HttpStatus.BAD_REQUEST, "EXIST_USERNAME", "중복된 아이디 입니다."),
-    NOT_ALLOW_FILED(HttpStatus.BAD_REQUEST, "NOT_ALLOW_FILED", "이메일 혹은 비밀번호 형식이 틀립니다."),
-    DIFFERENT_PASSWORD(HttpStatus.BAD_REQUEST, "DIFFERENT_PASSWORD", "비밀번호가 둘이 다릅니다."),
+    PASSWORD_CONFIRMATION_MISMATCH(HttpStatus.BAD_REQUEST,"PASSWORD_CONFIRMATION_MISMATCH","비밀번호가 같지 않습니다"),
+    NOT_ALLOW_FILED(HttpStatus.BAD_REQUEST, "NOT_ALLOW_FILED", "아이디 혹은 비밀번호 형식이 틀립니다."),
+    DIFFERENT_PASSWORD(HttpStatus.BAD_REQUEST, "DIFFERENT_PASSWORD", "비밀번호가 다릅니다."),
     NOT_FOUND_USER(HttpStatus.NOT_FOUND, "NOT_FOUND_USER", "사용자가 없습니다."),
     USER_SUSPENDED(HttpStatus.NOT_FOUND, "USER_SUSPENDED", "사용자가 정지되었습니다."),
 
