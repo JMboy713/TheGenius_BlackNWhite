@@ -1,5 +1,9 @@
 package com.genius.genius.common.config.security;
 
+import com.genius.genius.common.config.jwt.filter.TokenAuthenticationFilter;
+import com.genius.genius.common.config.jwt.service.TokenService;
+import com.genius.genius.common.config.jwt.util.JwtTokenizer;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -8,11 +12,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final JwtTokenizer jwtTokenizer;
+    private final TokenService tokenService;
     // 모든 유저 허용 페이지
     String[] allAllowPage = new String[]{
             "/api/v1/", // 메인페이지
@@ -54,6 +62,7 @@ public class SecurityConfig {
         http.httpBasic(auth -> auth.disable());
 
         //jwt 필터 검사 인증
+        http.addFilterBefore(new TokenAuthenticationFilter(jwtTokenizer, tokenService), UsernamePasswordAuthenticationFilter.class);
 
         // SecurityFilterChain 빌드 후 반환
         return http.build();
