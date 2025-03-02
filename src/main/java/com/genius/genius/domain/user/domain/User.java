@@ -25,4 +25,8 @@ public class User extends BaseEntity {
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
+
+    @Column(nullable = false, name = "authority")
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
 }
