@@ -4,6 +4,8 @@ import com.genius.genius.domain.user.domain.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -18,17 +20,16 @@ public class Room {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, name = "is_started")
     private Boolean isStarted;
 
-    @Column(nullable = false)
-    private User user1;
-
-    @Column(nullable = false)
-    private User user2;
-
-
+    @ManyToMany
+    @JoinTable(
+            name = "room_users",
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users;
 }
