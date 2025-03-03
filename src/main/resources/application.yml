@@ -23,3 +23,8 @@ spring:
     refreshSecret: ${LOC_JWT_REFRESH_SECRET}
     accessTokenExpire: ${LOC_JWT_ACCESS_EXPIRE}
     refreshTokenExpire: ${LOC_JWT_REFRESH_EXPIRE}
+  devtools:
+    restart:
+      enabled: true   # 변경 사항 감지 후 자동 재시작
+    livereload:
+      enabled: true   # 브라우저 자동 새로고침 활성화

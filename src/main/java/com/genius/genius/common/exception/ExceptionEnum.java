@@ -57,7 +57,9 @@ public enum ExceptionEnum {
     ALREADY_DELETED(HttpStatus.NOT_FOUND,"ALREADY_DELETED","삭제된 방입니다."),
     ALREADY_STARTED(HttpStatus.NOT_FOUND,"ALREADY_STARTED","시작된 방입니다."),
     NOT_ALLOW_QUIT(HttpStatus.BAD_REQUEST,"NOT_ALLOW_QUIT","시작 대기 중 퇴장이 불가능합니다."),
-    NOT_MANAGER(HttpStatus.FORBIDDEN,"NOT_MANAGER","방장만 게임시작을 할 수 있습니다.");
+    NOT_MANAGER(HttpStatus.FORBIDDEN,"NOT_MANAGER","방장만 게임시작을 할 수 있습니다."),
+    WRONG_PASSWORD(HttpStatus.BAD_REQUEST,"NOT_CORRECT_PASSWORD","방 비밀번호가 다릅니다."),
+    NOT_ENOUGH_USERS(HttpStatus.BAD_REQUEST,"NOT_ENOUGH_USERS","방 인원이 부족합니다.");
 
     private final HttpStatus status;
     private final String code;
