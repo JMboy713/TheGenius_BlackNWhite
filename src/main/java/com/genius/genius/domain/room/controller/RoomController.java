@@ -76,5 +76,14 @@ public class RoomController {
         return new CustomResponse<>(HttpStatus.OK, "방 나가기 성공", room.get());
     }
 
+    @PostMapping("/ready")
+    @Operation(summary = "방 준비 요청", description = "방 준비 요청 API.")
+    @ApiResponse(responseCode = "200", description = "방 준비 완료")
+    public CustomResponse<Room> readyRoom() {
+        User currentUser = userService.getCurrentUser();
+        Room room = roomService.setReady(currentUser);
+        return new CustomResponse<>(HttpStatus.OK, "방 준비 완료", room);
+    }
+
 }
 

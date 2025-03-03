@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class RoomJoinRequest {
     private long roomId;
-    private Integer password;
+    private String password;
 
 }

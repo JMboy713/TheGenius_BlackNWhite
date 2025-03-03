@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,7 +21,7 @@ public class Room {
     @Column(nullable = false)
     private String name;
 
-    private Integer password;
+    private String password;
 
     @Column(nullable = false, name = "is_started")
     private Boolean isStarted;
@@ -31,5 +32,9 @@ public class Room {
             joinColumns = @JoinColumn(name = "room_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<User> users;
+    private Set<User> users;
+
+    @ManyToMany
+    @Column(nullable = true, name = "ready_users")
+    private List<User> readyUsers;
 }
