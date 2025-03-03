@@ -9,8 +9,8 @@ import java.util.Optional;
 public interface UserService {
     void registerUser(UserRegRequest userRegRequest);
     Optional<User> findByUsername(String username);
-
     Optional<User> findById(Long id);
+    
 
     User getCurrentUser();
 }
