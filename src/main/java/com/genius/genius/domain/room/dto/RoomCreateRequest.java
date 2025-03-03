@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RoomRequest {
+public class RoomCreateRequest {
     private String name;
-    private String password;
-    private Long user1Id;
-    private Long user2Id;
+    private Integer password;
 }

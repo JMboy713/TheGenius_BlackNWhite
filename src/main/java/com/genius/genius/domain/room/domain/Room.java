@@ -20,7 +20,7 @@ public class Room {
     @Column(nullable = false)
     private String name;
 
-    private String password;
+    private Integer password;
 
     @Column(nullable = false, name = "is_started")
     private Boolean isStarted;
