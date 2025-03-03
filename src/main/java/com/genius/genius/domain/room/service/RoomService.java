@@ -13,5 +13,5 @@ public interface RoomService {
     Room createRoom(RoomCreateRequest req);
     Room joinRoom(RoomJoinRequest req, Long userId);
     Page<Room> searchRooms(String query, Pageable pageable);
-    Optional<Room> leaveRoom(long roomId, Long userid);
+    Optional<Room> leaveRoom(Long roomId, Long userid);
 }

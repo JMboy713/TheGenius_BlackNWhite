@@ -88,7 +88,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Optional<Room> leaveRoom(long roomId, Long userId) {
+    public Optional<Room> leaveRoom(Long roomId, Long userId) {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new ApiException(ExceptionEnum.ROOM_NOT_FOUND));
         User user = userService.findById(userId).orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
 

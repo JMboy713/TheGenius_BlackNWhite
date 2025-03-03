@@ -11,8 +11,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +44,9 @@ public class RoomController {
     @ApiResponse(responseCode = "200", description = "방 검색 완료")
     public CustomResponse<Page<Room>> searchRooms(
             @RequestParam(required = false) String query, // ✅ 하나의 검색어만 받음
-            Pageable pageable // ✅ Pagination 지원
+            @ParameterObject
+            @PageableDefault(size = 10, page = 0)
+            @SortDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Page<Room> rooms = roomService.searchRooms(query, pageable);
         return new CustomResponse<>(HttpStatus.OK, "검색 완료", rooms);
@@ -60,7 +66,7 @@ public class RoomController {
     @Operation(summary = "방 나가기 요청", description = "방 나가기 요청 API.")
     @ApiResponse(responseCode = "200", description = "방 나가기 완료")
     @ApiResponse(responseCode = "204", description = "방 삭제됨")
-    public CustomResponse<Room> leaveRoom(@RequestParam long roomId) {
+    public CustomResponse<Room> leaveRoom(@RequestParam Long roomId) {
         User currentUser = userService.getCurrentUser();
         Optional<Room> room = roomService.leaveRoom(roomId, currentUser.getId());
 
@@ -71,5 +77,4 @@ public class RoomController {
     }
 
 }
-
 
