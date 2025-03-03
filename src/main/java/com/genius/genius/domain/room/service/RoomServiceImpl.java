@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -81,9 +82,27 @@ public class RoomServiceImpl implements RoomService {
     @Override
     @Transactional(readOnly = true)
     public Page<Room> searchRooms(String query, Pageable pageable) {
-        // ✅ Specification.where() 사용하여 null 방지
+        // ✅ Specification.where() 사용하여 전체 검색 가능하도록 처리
         Specification<Room> spec = Specification.where(RoomSpecification.searchByQuery(query));
         return roomRepository.findAll(spec, pageable);
+    }
+
+    @Override
+    public Optional<Room> leaveRoom(long roomId, Long userId) {
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new ApiException(ExceptionEnum.ROOM_NOT_FOUND));
+        User user = userService.findById(userId).orElseThrow(() -> new ApiException(ExceptionEnum.USER_NOT_FOUND));
+
+        if (!room.getUsers().contains(user)) {
+            throw new ApiException(ExceptionEnum.NOT_IN_ROOM);
+        }
+
+        room.getUsers().remove(user);
+
+        if (room.getUsers().size() == 0) {
+            roomRepository.delete(room);
+            return Optional.empty();
+        }
+        return Optional.of(roomRepository.save(room));
     }
 
 }

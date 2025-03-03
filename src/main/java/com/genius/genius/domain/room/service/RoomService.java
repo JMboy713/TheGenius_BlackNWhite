@@ -6,12 +6,12 @@ import com.genius.genius.domain.room.dto.RoomJoinRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-
+import java.util.Optional;
 
 
 public interface RoomService {
     Room createRoom(RoomCreateRequest req);
     Room joinRoom(RoomJoinRequest req, Long userId);
     Page<Room> searchRooms(String query, Pageable pageable);
-
+    Optional<Room> leaveRoom(long roomId, Long userid);
 }

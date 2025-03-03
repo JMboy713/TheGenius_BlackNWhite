@@ -8,6 +8,11 @@ import java.util.List;
 
 public class RoomSpecification {
     public static Specification<Room> searchByQuery(String query) {
+        // ✅ query가 없으면 전체 검색 수행
+        if (query == null || query.trim().isEmpty()) {
+            return Specification.where(null); // ✅ 전체 검색
+        }
+
         return (root, queryObj, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -31,10 +36,6 @@ public class RoomSpecification {
 
             // ✅ 검색 결과는 isStarted = false인 방만 반환
             predicates.add(criteriaBuilder.isFalse(root.get("isStarted")));
-
-            if (predicates.isEmpty()) {
-                return criteriaBuilder.conjunction(); // ✅ 빈 조건을 방지하여 전체 검색 수행
-            }
 
             return criteriaBuilder.or(predicates.toArray(new Predicate[0])); // OR 조건으로 검색
         };
