@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/user")
-@Slf4j
 @RequiredArgsConstructor
 @Tag(name = "Authentication", description = "사용자 인증 API")
 public class UserController {
