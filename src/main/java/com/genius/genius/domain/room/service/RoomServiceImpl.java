@@ -48,6 +48,12 @@ public class RoomServiceImpl implements RoomService {
 
         List<Room> rooms = roomRepository.findRoomsByUserIdAndNotStarted(user.getId());
 
+        Room currentRoom = roomRepository.findRoomByUsers(user);
+
+        if (currentRoom != null) {
+            throw new ApiException(ExceptionEnum.IN_OTHER_ROOM);
+        }
+
         if (!rooms.isEmpty()) {
             throw new ApiException(ExceptionEnum.IN_OTHER_ROOM);
         }

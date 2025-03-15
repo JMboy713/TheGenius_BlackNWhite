@@ -2,7 +2,9 @@ package com.genius.genius.domain.room.dto;
 
 import com.genius.genius.domain.rank.entity.Rank;
 import com.genius.genius.domain.user.domain.User;
+import lombok.Getter;
 
+@Getter
 public class UserDTO {
     private Long id;
     private String name;
