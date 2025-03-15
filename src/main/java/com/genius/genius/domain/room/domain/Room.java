@@ -5,7 +5,6 @@ import com.genius.genius.domain.user.domain.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,14 +37,15 @@ public class Room {
 
     @ManyToMany
     @Column(nullable = true, name = "ready_users")
-    private List<User> readyUsers;
+    private Set<User> readyUsers;
 
     // User -> UserDTO 변환 메서드 추가
     public Set<UserDTO> getUserDTOs(Set<User> users) {
         return this.users.stream().map(UserDTO::new).collect(Collectors.toSet());
     }
 
-    public Set<UserDTO> getReadyUserDTOs(List<User> readyUsers) {
+    public Set<UserDTO> getReadyUserDTOs(Set<User> readyUsers) {
+        if (readyUsers == null) return Set.of() ;
         return this.readyUsers.stream().map(UserDTO::new).collect(Collectors.toSet());
     }
 
