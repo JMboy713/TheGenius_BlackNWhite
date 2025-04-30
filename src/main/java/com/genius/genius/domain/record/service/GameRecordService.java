@@ -2,6 +2,10 @@ package com.genius.genius.domain.record.service;
 
 import com.genius.genius.domain.record.entity.GameRecord;
 
+import java.util.UUID;
+
 public interface GameRecordService {
     void save(GameRecord record);
+
+    GameRecord findByGameId(UUID gameId);
 }

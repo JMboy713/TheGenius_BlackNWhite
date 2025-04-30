@@ -3,6 +3,8 @@ package com.genius.genius.domain.user.service;
 import com.genius.genius.common.config.jwt.provider.CustomUserDetails;
 import com.genius.genius.common.exception.ApiException;
 import com.genius.genius.common.exception.ExceptionEnum;
+import com.genius.genius.domain.rank.entity.Rank;
+import com.genius.genius.domain.rank.service.RankService;
 import com.genius.genius.domain.user.domain.Authority;
 import com.genius.genius.domain.user.domain.User;
 import com.genius.genius.domain.user.repository.UserRepository;
@@ -21,6 +23,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RandomName randomName;
+    private final RankService rankService;
+
     @Override
     public void registerUser(UserRegRequest userRegRequest) {
         // 아이디 중복 확인
@@ -42,6 +46,11 @@ public class UserServiceImpl implements UserService {
 
         // 저장
         userRepository.save(user);
+
+        // 초기 Rank 생성
+        Rank rank = new Rank();
+        rank.setUser(user);
+        rankService.save(rank);
     }
 
     @Override

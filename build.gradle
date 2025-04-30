@@ -28,6 +28,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring WebSocket + STOMP
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
     // redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'mysql:mysql-connector-java:8.0.33'
@@ -43,10 +45,17 @@ dependencies {
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'              // 명시 버전
+    testImplementation 'org.assertj:assertj-core:3.25.1'                     // fluent assertions
+    testImplementation 'org.testcontainers:junit-jupiter:1.19.8'
+    testImplementation 'org.testcontainers:redis:1.19.8'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.9.0'             // @ExtendWith(MockitoExtension)
+    testImplementation 'org.mockito:mockito-core'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
