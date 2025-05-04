@@ -2,12 +2,8 @@ package com.genius.genius.domain.user.domain;
 
 import com.genius.genius.common.entity.BaseEntity;
 import com.genius.genius.domain.rank.entity.Rank;
-import com.genius.genius.domain.record.entity.GameRecord;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -38,12 +34,4 @@ public class User extends BaseEntity {
 
     @OneToOne(mappedBy = "user")
     private Rank rank;
-
-    // User가 첫 번째 사용자로 참여한 Record 들
-    @OneToMany(mappedBy = "winner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GameRecord> recordsAsUser1 = new ArrayList<>();
-
-    // User가 두 번째 사용자로 참여한 Record 들
-    @OneToMany(mappedBy = "loser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<GameRecord> recordsAsUser2 = new ArrayList<>();
 }
